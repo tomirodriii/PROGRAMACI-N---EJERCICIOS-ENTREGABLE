@@ -13,36 +13,42 @@ os.system("cls")
 palabras = []
 
 seguir = True
+otra_op = True
 
 while seguir:
-    p = input("Ingrese una palabra:")
+    p = input("Ingrese una palabra:").lower()
     if p == "":
         seguir = False
     else:
         palabras.append(p)
 
-opcion = input("Ingrese una opcion (Contar, Modificar, Eliminar, Mostrar o Terminar):").lower()
 
-if opcion == "terminar":
-    print("Gracias por jugar!")
-    
-if opcion == "contar":
-    print(len(palabras))
-    
-if opcion == "modificar":
-    input_mod = input("Ingrese la palabra a modificar:").lower()
-    input_mod2 = input("Ingrese la palabra la modificacion:").lower()
-    for i in palabras:
-        if i == input_mod:
-            i = input_mod2
-            
-if opcion == "eliminar":
-    input_elim = input("Ingrese la palabra a eliminar:").lower()
-    for i in palabras:
-        if i == input_elim:
-            palabras.remove(i)
-            
-if opcion == "mostrar":
-    print(palabras)
-    
+while otra_op: 
+    opcion = input("Ingrese una opcion (Contar, Modificar, Eliminar, Mostrar o Terminar):").lower()
+
+    if opcion == "terminar":
+        otra_op = False
+        print("Gracias por jugar!")
+        
+    elif opcion == "contar":
+        print(len(palabras))
+        
+    elif opcion == "modificar":
+        input_mod = input("Ingrese la palabra a modificar:").lower()
+        input_mod2 = input("Ingrese la palabra la modificacion:").lower()
+        for i,palabra in enumerate(palabras):
+            if input_mod == palabras[i]:
+                palabras[i] = input_mod2
+            else:
+                print("Palabra no encontrada")
+                
+    elif opcion == "eliminar":
+        input_elim = input("Ingrese la palabra a eliminar:").lower()
+        for i in palabras:
+            if i == input_elim:
+                palabras.remove(i)
+                
+    elif opcion == "mostrar":
+        print(palabras)
+        
     
