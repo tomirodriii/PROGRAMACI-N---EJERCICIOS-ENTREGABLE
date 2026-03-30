@@ -15,40 +15,51 @@ palabras = []
 seguir = True
 otra_op = True
 
+
 while seguir:
-    p = input("Ingrese una palabra:").lower()
+    p = input("Ingrese una palabra: ").lower()
     if p == "":
         seguir = False
     else:
         palabras.append(p)
 
 
-while otra_op: 
-    opcion = input("Ingrese una opcion (Contar, Modificar, Eliminar, Mostrar o Terminar):").lower()
+while otra_op:
+    opcion = input("\nIngrese una opcion (Contar, Modificar, Eliminar, Mostrar o Terminar): ").lower()
 
     if opcion == "terminar":
         otra_op = False
-        print("Gracias por jugar!")
-        
+        print("Gracias por usar el programa!")
+
     elif opcion == "contar":
-        print(len(palabras))
-        
+         print(len(palabras))
+
     elif opcion == "modificar":
-        input_mod = input("Ingrese la palabra a modificar:").lower()
-        input_mod2 = input("Ingrese la palabra la modificacion:").lower()
-        for i,palabra in enumerate(palabras):
-            if input_mod == palabras[i]:
+        input_mod = input("Ingrese la palabra a modificar: ").lower()
+        input_mod2 = input("Ingrese la nueva palabra: ").lower()
+
+        encontrada = False
+
+        for i in range(len(palabras)):
+            if palabras[i] == input_mod:
                 palabras[i] = input_mod2
-            else:
-                print("Palabra no encontrada")
-                
+                encontrada = True
+
+        if not encontrada:
+            print("Palabra no encontrada")
+        else:
+            print("Lista actualizada:", palabras)
+
     elif opcion == "eliminar":
-        input_elim = input("Ingrese la palabra a eliminar:").lower()
-        for i in palabras:
-            if i == input_elim:
-                palabras.remove(i)
-                
-    elif opcion == "mostrar":
-        print(palabras)
+        input_elim = input("Ingrese la palabra a eliminar: ").lower()
         
-    
+        if input_elim in palabras:
+            while input_elim in palabras:
+                palabras.remove(input_elim)
+            print("Lista actualizada:", palabras)
+        else:
+            print("Palabra no encontrada")
+
+    elif opcion == "mostrar":
+        print("Lista:", palabras)
+
